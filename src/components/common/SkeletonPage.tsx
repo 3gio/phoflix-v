@@ -29,7 +29,7 @@ const SkeletonPage = ({ page }: { page: string }) => {
           <Skeleton
             sx={{
               width: {
-                xs: "calc(100vw - 32px)",
+                xs: "calc(100vw - 24px)",
                 sm: "calc(100vw - 48px)",
                 md: "calc(100vw - 82px)",
               },
