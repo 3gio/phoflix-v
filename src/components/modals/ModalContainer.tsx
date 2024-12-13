@@ -15,7 +15,14 @@ const ModalContainer = ({
 }: ModalContainerProps) => {
   return (
     <Modal
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        "& > div": {
+          backdropFilter: "unset !important",
+        },
+      }}
       open={open}
       onClose={() => setOpen(false)}
     >
