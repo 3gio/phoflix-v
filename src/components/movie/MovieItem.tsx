@@ -67,14 +67,14 @@ const MovieItem = ({ movie, page, handleDeleteMovie }: IProps) => {
           variant={theme === "light" ? "soft" : "solid"}
           color="neutral"
         >
-          {movie.lang}
+          {movie?.lang !== "" ? movie?.lang : "Không xác định"}
         </Chip>
         <Chip
           size="sm"
           variant={theme === "light" ? "soft" : "solid"}
           color="primary"
         >
-          {movie.time}
+          {movie?.time !== "" ? movie?.time : "Không xác định"}
         </Chip>
       </Box>
       <Box className="movie-item-info">

@@ -46,6 +46,9 @@ const _Drawer = ({ open, setOpen }: _Drawer) => {
         "--Drawer-transitionFunction": open
           ? "cubic-bezier(0.79,0.14,0.15,0.86)"
           : "cubic-bezier(0.77,0,0.18,1)",
+        "& > div": {
+            backdropFilter: "unset",
+        }
       }}
     >
       <ModalClose />

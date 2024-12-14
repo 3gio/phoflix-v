@@ -6,6 +6,10 @@
   position: relative;
   transition: 0.3s;
 
+  @media (max-width: 768px) {
+    height: 260px;
+  }
+
   img {
     transition: 0.3s;
   }

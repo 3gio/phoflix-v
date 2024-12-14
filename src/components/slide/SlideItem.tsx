@@ -22,8 +22,8 @@ const SlideItem = ({ item }: IProps) => {
       sx={{
         display: "flex",
         position: "absolute",
-        bottom: isLargeScreen ? "48px" : "32px",
-        left: isLargeScreen ? "48px" : "24px",
+        bottom: "24px",
+        left: "24px",
         right: !isLargeScreen ? "24px" : "unset",
         backdropFilter: isLargeScreen ? "blur(8px)" : "unset",
         backgroundColor: isLargeScreen ? "rgba(255, 255, 255, 0.3)" : "unset",
@@ -59,7 +59,7 @@ const SlideItem = ({ item }: IProps) => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "12px",
+          gap: "8px",
           width: "100%",
           overflow: "hidden",
         }}
@@ -116,7 +116,7 @@ const SlideItem = ({ item }: IProps) => {
         </Box>
         <Chip
           size="sm"
-          sx={{ marginTop: "12px" }}
+          sx={{ marginTop: "8px" }}
           variant={theme === "light" ? "soft" : "solid"}
           color={theme === "light" ? "primary" : "neutral"}
         >

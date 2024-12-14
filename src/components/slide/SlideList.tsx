@@ -42,9 +42,7 @@ const SlideList = () => {
             <SwiperSlide
               key={index}
               style={{
-                backgroundImage: `url("${
-                  width > 600 ? item?.thumb_url : item?.poster_url
-                }")`,
+                backgroundImage: `url("${item?.thumb_url}")`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
