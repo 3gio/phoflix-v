@@ -22,11 +22,11 @@ const ModalListUserRating = ({ open, setOpen }: ModalListUserRatingProps) => {
       sx={{
         animation: "scaleIn 0.3s",
         maxWidth: {
-          xs: "90%",
+          xs: "90vw",
           sm: "420px",
         },
         minWidth: {
-          xs: "90%",
+          xs: "90vw",
           sm: "400px",
         },
         borderRadius: "md",
@@ -41,14 +41,8 @@ const ModalListUserRating = ({ open, setOpen }: ModalListUserRatingProps) => {
           display: "flex",
           flexDirection: "column",
           gap: "12px",
-          minHeight: {
-            xs: "50vh",
-            sm: "400px",
-          },
-          maxHeight: {
-            xs: "80vh",
-            sm: "500px",
-          },
+          minHeight: "50vh",
+          maxHeight: "60vh",
           overflowY: "auto",
         }}
       >

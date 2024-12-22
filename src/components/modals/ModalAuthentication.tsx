@@ -36,10 +36,15 @@ const ModalAuthentication = ({ type, open, setOpen }: IProps) => {
           xs: "90%",
           sm: "520px",
         },
+        maxHeight: {
+          xs: "80vh",
+          sm: "90%",
+        },
         borderRadius: "md",
         p: 3,
         boxShadow: "lg",
         backdropFilter: "unset",
+        overflowY: "auto",
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
