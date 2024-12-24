@@ -56,10 +56,10 @@ export const getSlideShow = createAsyncThunk(
 
 export const getFeatureFilm = createAsyncThunk(
   "movies/getFeatureFilm",
-  async () => {
+  async (quantity: number) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_PHIM_LE}?limit=24` as string
+        `${process.env.REACT_APP_API_PHIM_LE}?limit=${quantity}` as string
       );
       const data = await response.json();
       return data;
@@ -71,10 +71,10 @@ export const getFeatureFilm = createAsyncThunk(
 
 export const getTelevisionSeries = createAsyncThunk(
   "movies/getTelevisionSeries",
-  async () => {
+  async (quantity: number) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_PHIM_BO}?limit=24` as string
+        `${process.env.REACT_APP_API_PHIM_BO}?limit=${quantity}` as string
       );
       const data = await response.json();
       return data;
@@ -84,29 +84,35 @@ export const getTelevisionSeries = createAsyncThunk(
   }
 );
 
-export const getCartoon = createAsyncThunk("movies/getCartoon", async () => {
-  try {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_HOAT_HINH}?limit=24` as string
-    );
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
+export const getCartoon = createAsyncThunk(
+  "movies/getCartoon",
+  async (quantity: number) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_HOAT_HINH}?limit=${quantity}` as string
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
-export const getTvShows = createAsyncThunk("movies/getTvShows", async () => {
-  try {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_TV_SHOWS}?limit=24` as string
-    );
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
+export const getTvShows = createAsyncThunk(
+  "movies/getTvShows",
+  async (quantity: number) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_TV_SHOWS}?limit=${quantity}` as string
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 export const getMovieInfo = createAsyncThunk(
   "movies/getMovieInfo",
@@ -127,11 +133,11 @@ export const getMovieInfo = createAsyncThunk(
 export const getMovieDetail = createAsyncThunk(
   "movies/getMovieDetail",
   async (rawData: IGetMovieDetail) => {
-    let { describe, slug, page } = rawData;
+    let { describe, slug, page, quantity } = rawData;
     try {
       const baseApi = `${process.env.REACT_APP_API_BASE}/${describe}/${slug}`;
       const response = await fetch(
-        `${baseApi}?page=${page}&limit=24` as string
+        `${baseApi}?page=${page}&limit=${quantity}` as string
       );
 
       const data = await response.json();
@@ -145,10 +151,11 @@ export const getMovieDetail = createAsyncThunk(
 export const searchMovie = createAsyncThunk(
   "movies/searchMovie",
   async (rawData: ISearchMovie) => {
-    const { keyword, page } = rawData;
+    const { keyword, page, quantity } = rawData;
 
     try {
-      const baseApi: string = `${process.env.REACT_APP_API_TIM_KIEM}?keyword=${keyword}&limit=24&page=${page}`;
+      const baseApi: string = 
+        `${process.env.REACT_APP_API_TIM_KIEM}?keyword=${keyword}&limit=${quantity}&page=${page}`;
       const response = await fetch(baseApi);
       const data = await response.json();
       return data.data;

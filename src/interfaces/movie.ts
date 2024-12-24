@@ -49,11 +49,13 @@ export interface IGetMovieDetail {
   describe: string;
   slug: string;
   page: number;
+  quantity: number;
 }
 
 export interface ISearchMovie {
   keyword: string;
   page: number;
+  quantity: number;
 }
 
 export interface IAddMovie {
@@ -76,5 +78,4 @@ export interface IDeleteMovie {
   userId: string;
   movieSlug: string;
   type: string;
-} 
-
+}

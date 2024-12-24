@@ -22,20 +22,18 @@ const Home = () => {
   const televisionSeries = movies.televisionSeries;
   const cartoon = movies.cartoon;
   const tvShows = movies.tvShows;
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const width = useSelector((state: RootState) => state.system.width);
 
   useEffect(() => {
     const handleInit = async () => {
       try {
-        setIsLoading(true);
-
         await Promise.all([
           dispatch(getSlideShow()),
-          dispatch(getFeatureFilm()),
-          dispatch(getTelevisionSeries()),
-          dispatch(getCartoon()),
-          dispatch(getTvShows()),
+          dispatch(getFeatureFilm(width < 467 ? 8 : 24)),
+          dispatch(getTelevisionSeries(width < 467 ? 8 : 24)),
+          dispatch(getCartoon(width < 467 ? 8 : 24)),
+          dispatch(getTvShows(width < 467 ? 8 : 24)),
         ]);
       } catch (error) {
         toast.error("Đã xảy ra lỗi, vui lòng thử lại sau!");
@@ -46,6 +44,11 @@ const Home = () => {
 
     handleInit();
   }, [dispatch]);
+
+  
+  useEffect(() => {
+    document.title = "Thế Giới Phim - Xem Phim Hay, Phim Mới Mỗi Ngày!";
+  }, []);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>

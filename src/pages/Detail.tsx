@@ -31,8 +31,8 @@ const Detail = () => {
     },
     isError,
   } = useSelector((state: RootState) => state.movies);
-  const { isMobile } = useSelector((state: RootState) => state.system);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { isMobile, width } = useSelector((state: RootState) => state.system);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const params = useParams<{ describe: string; slug: string }>();
   const [describeMapping, setDescribeMapping] = useState<describe>({
@@ -93,6 +93,7 @@ const Detail = () => {
           describe: params.describe as string,
           slug: params.slug as string,
           page: currentPage,
+          quantity: width < 467 ? 8 : 24,
         })
       );
       setIsLoading(false);
@@ -101,12 +102,16 @@ const Detail = () => {
   }, [params?.slug, currentPage]);
 
   useEffect(() => {
-    setCurrentPage(1);
+    setTimeout(() => {
+      setCurrentPage(1);
+    }, 500);
   }, [params]);
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     scrollToTop();
-    setCurrentPage(value);
+    setTimeout(() => {
+      setCurrentPage(value);
+    }, 200);
   };
 
   if (isLoading && !isError) {

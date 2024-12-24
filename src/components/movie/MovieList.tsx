@@ -4,6 +4,8 @@ import SkeletonMovie from "../common/SkeletonMovies";
 import { IMovie } from "../../interfaces/movie";
 import searchNotFoundImg from "../../images/search-not-found.png";
 import ShowBackground from "../common/ShowBackground";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 interface IProps {
   movies: IMovie[];
@@ -13,34 +15,36 @@ interface IProps {
 }
 
 const MovieList = ({ movies, page, isLoading, handleDeleteMovie }: IProps) => {
-  if (isLoading || movies?.length === 0) {
-    return <SkeletonMovie quantity={18} />;
-  }
+  const width = useSelector((state: RootState) => state.system.width);
 
-  if (!isLoading && movies?.length === 0) {
-    return (
-      <ShowBackground
-        urlImage={searchNotFoundImg}
-        content="Không tìm thấy kết quả nào!"
-        color="danger"
-      />
-    );
+  if (isLoading) {
+    return <SkeletonMovie quantity={width > 467 ? 12 : 4} />;
   }
 
   return (
-    <Box>
-      <Grid container spacing={1} sx={{ flexGrow: 1 }}>
-        {movies?.map((movie: IMovie, index) => (
-          <Grid xs={6} sm={4} lg={2} md={3} key={index}>
-            <MovieItem
-              movie={movie}
-              page={page as string}
-              handleDeleteMovie={handleDeleteMovie}
-            />
+    <>
+      {!isLoading && movies.length > 0 ? (
+        <Box>
+          <Grid container spacing={1} sx={{ flexGrow: 1 }}>
+            {movies?.map((movie: IMovie, index) => (
+              <Grid xs={6} sm={4} lg={2} md={3} key={index}>
+                <MovieItem
+                  movie={movie}
+                  page={page as string}
+                  handleDeleteMovie={handleDeleteMovie}
+                />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
-    </Box>
+        </Box>
+      ) : (
+        <ShowBackground
+          urlImage={searchNotFoundImg}
+          content="Không tìm thấy kết quả nào!"
+          color="danger"
+        />
+      )}
+    </>
   );
 };
 

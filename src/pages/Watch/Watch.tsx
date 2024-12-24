@@ -43,7 +43,7 @@ const Watch = () => {
     currentEpisode.filename.replace(`- ${currentEpisode.name}`, ""),
     currentEpisode.name,
   ];
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (movieInfo?.name && movieInfo?.origin_name) {

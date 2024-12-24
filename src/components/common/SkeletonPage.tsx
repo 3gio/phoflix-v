@@ -1,7 +1,11 @@
 import { Box, Skeleton } from "@mui/joy";
 import SkeletonMovie from "./SkeletonMovies";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const SkeletonPage = ({ page }: { page: string }) => {
+  const width = useSelector((state: RootState) => state.system.width);
+
   return (
     <>
       {(page === "detail" ||
@@ -11,7 +15,7 @@ const SkeletonPage = ({ page }: { page: string }) => {
         <Box sx={{ display: "flex", gap: "24px", flexDirection: "column" }}>
           <Skeleton variant="text" level="h4" width="50%" />
           <Skeleton variant="text" level="h1" />
-          <SkeletonMovie quantity={18} />
+          <SkeletonMovie quantity={width > 467 ? 12 : 4} />
         </Box>
       )}
 

@@ -23,7 +23,7 @@ const Info = () => {
   const isError = useSelector((state: RootState) => state.movies.isError);
   const [isSave, setIsSave] = useState<boolean>(false);
   const breadcrumbsPaths = ["Thông tin phim", movieInfo.name];
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (movieInfo?.name && movieInfo?.origin_name) {
@@ -33,7 +33,6 @@ const Info = () => {
 
   useEffect(() => {
     const handleInit = async () => {
-      setIsLoading(true);
       await dispatch(getMovieInfo(params.slug as string));
       setIsLoading(false);
     };

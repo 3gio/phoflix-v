@@ -8,7 +8,6 @@ import MovieList from "../components/movie/MovieList";
 import BreadcrumbsCustom from "../components/BreadcrumbsCustom";
 import SkeletonPage from "../components/common/SkeletonPage";
 import SearchIcon from "@mui/icons-material/Search";
-import searchNotFoundImg from "../images/search-not-found.png";
 import { scrollToTop } from "../utils";
 import _Pagination from "../components/common/_Pagination";
 
@@ -27,23 +26,23 @@ const Search = () => {
     (state: RootState) => state.movies.searchMovie.titleHead
   );
   const isMobile = useSelector((state: RootState) => state.system.isMobile);
+  const width = useSelector((state: RootState) => state.system.width);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const params = useParams();
   const breadcrumbsPaths = ["Tìm kiếm", params.keyword as string];
 
-  // Cập nhật tiêu đề trang
   useEffect(() => {
     document.title = titleHead || "Kết quả tìm kiếm";
   }, [titleHead]);
 
-  // Xử lý thay đổi trang
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
     scrollToTop();
+    setTimeout(() => {
+      setCurrentPage(value);
+    }, 200);
   };
 
-  // Gọi API khi thay đổi từ khoá hoặc trang
   useEffect(() => {
     const fetchMovies = async () => {
       setIsLoading(true);
@@ -51,16 +50,18 @@ const Search = () => {
         searchMovie({
           keyword: params.keyword as string,
           page: currentPage,
+          quantity: width < 467 ? 8 : 24,
         })
       );
       setIsLoading(false);
     };
     fetchMovies();
-  }, [params?.keyword, currentPage);
+  }, [params?.keyword, currentPage]);
 
-  // Reset về trang đầu khi thay đổi từ khoá
   useEffect(() => {
-    setCurrentPage(1);
+    setTimeout(() => {
+      setCurrentPage(1);
+    }, 500);
   }, [params]);
 
   if (isLoading) {
@@ -107,7 +108,7 @@ const Search = () => {
           )}
         </Alert>
 
-        {movies.length > 0 ? (
+        {movies.length > 0 && (
           <>
             <MovieList movies={movies} />
             <_Pagination
@@ -116,18 +117,6 @@ const Search = () => {
               currentPage={currentPage}
             />
           </>
-        ) : (
-            <Box
-              sx={{
-                width: "128px",
-                height: "128px",
-                backgroundImage: `url(${searchNotFoundImg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            />
-          </Box>
         )}
       </Box>
     </>

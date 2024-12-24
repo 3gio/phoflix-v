@@ -12,11 +12,13 @@ import toast from "react-hot-toast";
 
 const MovieSuggestions = () => {
   const dispatch: AppDispatch = useDispatch();
+  const isMobile = useSelector((state: RootState) => state.system.isMobile);
   const params = useParams();
   const movies = useSelector((state: RootState) => state.movies.movieDetail);
   const categories = useSelector((state: RootState) => state.movies.categories);
   const countries = useSelector((state: RootState) => state.movies.countries);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const width = useSelector((state: RootState) => state.system.width);
 
   useEffect(() => {
     handleGenerateSuggestion();
@@ -36,6 +38,7 @@ const MovieSuggestions = () => {
           describe,
           slug: randomItem?.slug,
           page: 2,
+          quantity: width < 467 ? 8 : 24,
         })
       );
       setIsLoading(false);
