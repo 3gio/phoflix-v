@@ -60,7 +60,7 @@ const Search = () => {
     setCurrentPage(1);
   }, [params]);
 
-  if (isLoading) {
+  if (isLoading || movies.length === 0) {
     return <SkeletonPage page="search" />;
   }
 
