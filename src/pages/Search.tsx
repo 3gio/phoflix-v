@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { AppDispatch, RootState } from "../redux/store";
 import { searchMovie } from "../redux/asyncThunk/moviesThunk";
 import MovieList from "../components/movie/MovieList";
-import { Experimental_CssVarsProvider, Pagination, Stack } from "@mui/material";
 import BreadcrumbsCustom from "../components/BreadcrumbsCustom";
 import SkeletonPage from "../components/common/SkeletonPage";
 import SearchIcon from "@mui/icons-material/Search";
@@ -28,22 +27,25 @@ const Search = () => {
     (state: RootState) => state.movies.searchMovie.titleHead
   );
   const isMobile = useSelector((state: RootState) => state.system.isMobile);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const params = useParams();
   const breadcrumbsPaths = ["Tìm kiếm", params.keyword as string];
 
+  // Cập nhật tiêu đề trang
   useEffect(() => {
-    document.title = titleHead;
+    document.title = titleHead || "Kết quả tìm kiếm";
   }, [titleHead]);
 
+  // Xử lý thay đổi trang
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
     scrollToTop();
   };
 
+  // Gọi API khi thay đổi từ khoá hoặc trang
   useEffect(() => {
-    const handleInit = async () => {
+    const fetchMovies = async () => {
       setIsLoading(true);
       await dispatch(
         searchMovie({
@@ -53,14 +55,15 @@ const Search = () => {
       );
       setIsLoading(false);
     };
-    handleInit();
-  }, [params?.keyword, currentPage]);
+    fetchMovies();
+  }, [params?.keyword, currentPage);
 
+  // Reset về trang đầu khi thay đổi từ khoá
   useEffect(() => {
     setCurrentPage(1);
   }, [params]);
 
-  if (isLoading || movies.length === 0) {
+  if (isLoading) {
     return <SkeletonPage page="search" />;
   }
 
@@ -93,19 +96,18 @@ const Search = () => {
             level={isMobile ? "title-sm" : "title-md"}
           >
             {movies.length > 0
-              ? `Tìm kiếm được ${totalItems} bộ phim phù hợp cho từ khoá "${params.keyword}"`
-              : `Không tìm thấy phim phù hợp!`}
+              ? `Tìm thấy ${totalItems} bộ phim phù hợp với từ khoá "${params.keyword}"`
+              : `Không tìm thấy phim phù hợp với từ khoá "${params.keyword}"!`}
           </Typography>
 
           {movies.length > 0 && (
-            <Typography
-              color="neutral"
-              level="title-sm"
-            >{`Trang ${currentPage}`}</Typography>
+            <Typography color="neutral" level="title-sm">
+              {`Trang ${currentPage}`}
+            </Typography>
           )}
         </Alert>
 
-        {movies.length > 0 && !isLoading && (
+        {movies.length > 0 ? (
           <>
             <MovieList movies={movies} />
             <_Pagination
@@ -114,20 +116,18 @@ const Search = () => {
               currentPage={currentPage}
             />
           </>
-        )}
-
-        {!isLoading && movies.length === 0 && (
-          <Box
-            sx={{
-              width: "128px",
-              height: "128px",
-              backgroundImage: `url(${searchNotFoundImg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              margin: "auto",
-            }}
-          />
+        ) : (
+            <Box
+              sx={{
+                width: "128px",
+                height: "128px",
+                backgroundImage: `url(${searchNotFoundImg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
+          </Box>
         )}
       </Box>
     </>
