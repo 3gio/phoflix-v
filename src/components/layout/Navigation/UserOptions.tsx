@@ -61,7 +61,7 @@ const UserOptions = () => {
           </MenuItem>
           <Divider />
           <MenuItem onClick={() => handleLogout()}>
-            <LogoutIcon />
+            <LogoutIcon/>
             Đăng xuất
           </MenuItem>
         </Menu>

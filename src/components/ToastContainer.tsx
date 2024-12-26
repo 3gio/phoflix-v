@@ -10,7 +10,7 @@ const ToastContainer = () => {
       position="top-center"
       reverseOrder={true}
       toastOptions={{
-        duration: 3000,
+        duration: 1000,
         style: {
           background: theme === "dark" ? "#333333" : "#fff",
           color: theme === "dark" ? "#fff" : "#000",
