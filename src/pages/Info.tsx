@@ -33,6 +33,7 @@ const Info = () => {
 
   useEffect(() => {
     const handleInit = async () => {
+      setIsLoading(true);
       await dispatch(getMovieInfo(params.slug as string));
       setIsLoading(false);
     };
