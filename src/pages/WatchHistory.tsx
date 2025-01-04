@@ -31,7 +31,7 @@ const WatchHistory = () => {
   const user: IUser = useSelector((state: RootState) => state.users.user);
   const isMobile = useSelector((state: RootState) => state.system.isMobile);
   const [open, setOpen] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isLoadingButton, setIsLoadingButton] = useState<boolean>(false);
   const breadcrumbsPaths = ["Lịch sử đã xem"];
 
