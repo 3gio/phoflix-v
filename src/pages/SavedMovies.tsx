@@ -29,7 +29,7 @@ const SavedMovie = () => {
   const user: IUser = useSelector((state: RootState) => state.users.user);
   const [open, setOpen] = useState<boolean>(false);
   const breadcrumbsPaths = ["Phim đã lưu"];
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isLoadingButton, setIsLoadingButton] = useState<boolean>(false);
   const isMobile = useSelector((state: RootState) => state.system.isMobile);
 
