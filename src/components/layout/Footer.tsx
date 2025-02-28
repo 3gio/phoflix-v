@@ -23,7 +23,11 @@ const Footer = () => {
         } `,
       }}
     >
-      <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ flexGrow: 1, maxWidth: "1400px", margin: "0 auto" }}
+      >
         <Grid md={12} lg={4}>
           <Typography sx={{ marginBottom: "12px" }} level="h4">
             Giới thiệu

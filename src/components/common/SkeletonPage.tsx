@@ -32,29 +32,31 @@ const SkeletonPage = ({ page }: { page: string }) => {
 
           <Skeleton
             sx={{
-              width: {
-                xs: "calc(100vw - 24px)",
-                sm: "calc(100vw - 48px)",
-                md: "calc(100vw - 82px)",
-              },
+              position: "relative",
+              maxWidth: "1400px",
               height: "360px",
               borderRadius: "6px",
-              marginTop: "64px",
             }}
             animation="wave"
             variant="overlay"
           />
 
-          <Box sx={{ marginTop: "400px" }}>
+          <Box>
             <Skeleton
               animation="wave"
               variant="text"
-              level="h1"
-              sx={{ width: "100%" }}
+              sx={{ width: "100%", maxWidth: " 1400px" }}
             />
-            <Skeleton animation="wave" variant="text" sx={{ width: "100%" }} />
-            <Skeleton animation="wave" variant="text" sx={{ width: "100%" }} />
-            <Skeleton animation="wave" variant="text" sx={{ width: "100%" }} />
+            <Skeleton
+              animation="wave"
+              variant="text"
+              sx={{ width: "100%", maxWidth: " 1400px" }}
+            />
+            <Skeleton
+              animation="wave"
+              variant="text"
+              sx={{ width: "100%", maxWidth: " 1400px" }}
+            />
           </Box>
         </Box>
       )}

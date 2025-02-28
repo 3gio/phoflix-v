@@ -19,7 +19,6 @@ const DefaultLayout = ({ children }: IProps) => {
     <>
       <Box
         sx={{
-          maxWidth: "100vw",
           marginTop: "60px",
           overflow: "hidden",
         }}
@@ -27,6 +26,8 @@ const DefaultLayout = ({ children }: IProps) => {
         <Navigation />
         <Box
           sx={{
+            maxWidth: "1400px",
+            margin: "0 auto",
             padding: {
               xs: "12px",
               sm: "12px 16px",
