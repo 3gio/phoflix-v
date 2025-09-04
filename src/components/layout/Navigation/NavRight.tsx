@@ -97,28 +97,7 @@ const NavRight = ({ width }: NavRightProps) => {
         )}
 
         <ThemeToggle />
-
-        {!user?.refresh_token ? (
-          <Box sx={{ display: "flex", gap: "12px" }}>
-            <Button
-              size="sm"
-              color="neutral"
-              onClick={() => handleAuthentication("login")}
-              variant={theme === "light" ? "plain" : "solid"}
-            >
-              Đăng nhập
-            </Button>
-            <Button
-              size="sm"
-              onClick={() => handleAuthentication("register")}
-              variant="solid"
-            >
-              Đăng ký
-            </Button>
-          </Box>
-        ) : (
-          <UserOptions />
-        )}
+        
       </Box>
 
       <ModalSearch open={openModalSearch} setOpen={setOpenModalSearch} />
