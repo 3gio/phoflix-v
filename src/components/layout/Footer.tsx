@@ -33,7 +33,7 @@ const Footer = () => {
             Giới thiệu
           </Typography>
           <Typography level="title-md">
-            Chào mừng bạn đến với PHOFLIX-V2, nơi trải nghiệm điện ảnh trực
+            Chào mừng bạn đến với 3GIO, nơi trải nghiệm điện ảnh trực
             tuyến trở nên dễ dàng và thú vị hơn bao giờ hết! Tại đây, bạn sẽ
             khám phá hàng ngàn bộ phim đa dạng từ bom tấn Hollywood đến các tác
             phẩm nghệ thuật quốc tế và phim bộ truyền hình hấp dẫn. Với giao
@@ -65,13 +65,13 @@ const Footer = () => {
           >
             <Link
               startDecorator={<GitHubIcon />}
-              href="https://github.com/phohoccode"
+              href="https://github.com/"
             >
               Github
             </Link>
             <Link
               startDecorator={<TelegramIcon />}
-              href="https://t.me/phohoccode"
+              href="https://t.me/"
             >
               Telegram
             </Link>
@@ -83,7 +83,7 @@ const Footer = () => {
             level="title-md"
             color="primary"
           >
-            © 2024 - Phát triển bởi phohoccode
+            © 2025 - By Phohoccode
           </Typography>
         </Grid>
       </Grid>
