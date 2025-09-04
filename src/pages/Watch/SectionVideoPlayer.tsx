@@ -26,7 +26,7 @@ const SectionVideoPlayer = () => {
             width: "100%",
             height: "100%",
           }}
-          src={currentEpisode.link_embed}
+          src={`https://play.vnn69.com?url=${currentEpisode.link_m3u8}`} 
           frameBorder="0"
           allow="fullscreen"
         ></iframe>
