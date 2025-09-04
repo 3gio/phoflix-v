@@ -71,7 +71,7 @@ const Navigation = () => {
                 fontWeight: "bold",
               }}
             >
-              PHOFLIX-V2
+              3GIO
             </Typography>
           )}
 
