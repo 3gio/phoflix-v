@@ -117,37 +117,6 @@ const SectionCardMovie = ({
         >
           Xem ngay
         </Button>
-        {isSave ? (
-          <Tooltip
-            title="Xoá phim"
-            variant={theme === "light" ? "soft" : "solid"}
-            color="danger"
-          >
-            <IconButton
-              loading={isLoading}
-              onClick={() => handleUnSaveMovie()}
-              variant="solid"
-              color="danger"
-            >
-              <BookmarkRemoveOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip
-            title="Lưu phim"
-            variant={theme === "light" ? "soft" : "solid"}
-            color={theme === "light" ? "primary" : "neutral"}
-          >
-            <IconButton
-              loading={isLoading}
-              onClick={() => handleSaveMovie()}
-              variant="solid"
-              color="neutral"
-            >
-              <BookmarkAddOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-        )}
       </Box>
     </Box>
   );
