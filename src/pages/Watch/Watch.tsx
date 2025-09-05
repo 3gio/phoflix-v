@@ -94,8 +94,6 @@ const Watch = () => {
 
         <SectionListEpisodes />
 
-        <SectionRating />
-
         <SectionDownload
           link_m3u8={currentEpisode.link_m3u8 as string}
           setOpen={setOpen}
