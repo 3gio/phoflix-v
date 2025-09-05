@@ -103,12 +103,6 @@ const Watch = () => {
           <Divider />
         </Box>
 
-        <CommentSection />
-
-        <Box sx={{ margin: "12px 0" }}>
-          <Divider />
-        </Box>
-
         <MovieSuggestions />
       </Box>
 
