@@ -96,6 +96,97 @@ const SectionRating = () => {
     }
     setIsLoading(false);
   };
+
+  return (
+    <>
+      <Alert
+        sx={{
+          flexDirection: "column",
+          gap: "12px",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            gap: "12px",
+            alignItems: "center",
+          }}
+        >
+          <Typography startDecorator={<PollOutlinedIcon />} level="title-lg">
+            Đánh giá phim
+          </Typography>
+          {isLoading ? (
+            <Skeleton variant="text" level="body-xs" width={50} height={20} />
+          ) : (
+            <Chip
+              endDecorator={<StarBorderRoundedIcon />}
+              variant="outlined"
+              color={theme === "light" ? "primary" : "neutral"}
+            >
+              {rating.averageRating} / 5.0
+            </Chip>
+          )}
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "12px",
+            justifyContent: "center",
+            flex: "1",
+            alignItems: "center",
+          }}
+        >
+          {isLoading ? (
+            <>
+              <Skeleton variant="text" level="h3" width={100} />
+              <Skeleton
+                variant="text"
+                level="body-xs"
+                width={100}
+                height={20}
+              />
+            </>
+          ) : (
+            <>
+              <Experimental_CssVarsProvider>
+                <Rating
+                  sx={{
+                    "& span": {
+                      color: `${
+                        theme === "dark"
+                          ? "#9FA6AD !important"
+                          : "#0b6bcb !important"
+                      }`,
+                    },
+                  }}
+                  color="primary"
+                  onChange={(event, value) => handleAddRating(value as number)}
+                  name="half-rating"
+                  value={stars}
+                  precision={1}
+                />
+              </Experimental_CssVarsProvider>
+              <Tooltip title="Danh sách đánh giá">
+                <Typography
+                  sx={{
+                    cursor: "pointer",
+                    "&:hover": { textDecoration: "underline" },
+                  }}
+                  onClick={() => setOpenModal(true)}
+                  level="title-sm"
+                  color="neutral"
+                >
+                  {rating.countRating} lượt đánh giá
+                </Typography>
+              </Tooltip>
+            </>
+          )}
+        </Box>
+      </Alert>
+
+      <ModalListUserRating open={openModal} setOpen={setOpenModal} />
+    </>
+  );
 };
 
 export default SectionRating;
